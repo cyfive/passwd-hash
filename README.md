@@ -16,6 +16,8 @@
 
 `CIPHER` - тип хеш функции, может принимать следующие значения `1` - MD5, `5` - SHA256, `6` - SHA512 (значение по умолчанию).
 
+`SALT` - соль используемая для генерации хеша. Должна содержать так-же и код алгоритма. По умолчанию используется случайно сгенерированная соль.
+
 Все значения по умолчанию используются как в CentOS при хешировании пароля и при обычной эксплуатации не требуют изменений.
 
 ## Примеры запуска
@@ -38,7 +40,7 @@ $6$9k6FyocAgAY5Wg55$cdTJ9JE5NzwYQ83MJN/BypaupvHDl6.LJycXM4YGMb6mV6aTSAjuruJ/8ANi
 ```
 ## Генерация MD5 хеша
 ```
-[semets@pc-emets passwd-hash]$ export CIPHER=1; ./gen_passwd.sh 
+[semets@pc-emets passwd-hash]$ export CIPHER=1; ./passwd-hash.sh 
 Password: 
 $1$K7g9yn3f$gdbDSeEukuHStvnfeCsrl/
 [semets@pc-emets passwd-hash]$ 
