@@ -24,6 +24,7 @@ import crypt, getpass, os
 DEBUG = int(os.environ.get('DEBUG', '0'))
 SALT_LENGTH = int(os.environ.get('SALT_LENGTH', '16'))
 ENV_CIPHER = os.environ.get('CIPHER', '6')
+ENV_SALT = os.environ.get('SALT', '')
 
 if DEBUG > 0:
     print(f'Salt length: {SALT_LENGTH} (ignored in python version)')
@@ -35,15 +36,22 @@ for method in crypt.methods:
     if method.ident == ENV_CIPHER:
         CIPHER = method
 
-salt = crypt.mksalt(CIPHER)
+if not ENV_SALT:
+    salt = crypt.mksalt(CIPHER)
+else:
+    salt = ENV_SALT
 
 if DEBUG > 0:
-    print(f'Random salt: {salt}')
+    print(f'Salt: {salt}')
 
-passwd = getpass.getpass()
+passwd1 = getpass.getpass(prompt='Password:')
+passwd2 = getpass.getpass(prompt='Re-type password:')
 
-if passwd:
-    passwd_hash = crypt.crypt(passwd, salt)
-    print(passwd_hash)
+if passwd1:
+    if passwd1 == passwd2:
+        passwd_hash = crypt.crypt(passwd1, salt)
+        print(passwd_hash)
+    else:
+        print('Passwords is different! Please try again!')
 else:
-    print('Empty password!')
+    print('Password is empty!')
