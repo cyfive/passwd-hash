@@ -23,14 +23,14 @@
 ## Примеры запуска
 ### Обычный запуск скрипта
 ```
-[semets@pc-emets passwd-hash]$ ./gen_passwd.sh 
+[semets@pc-emets passwd-hash]$ ./passwd-hash.py 
 Password: 
 $6$hRGmGhbBXYu2H4ai$SeKOVSwvmJbWG2diymXsxOg6A9nNty82G/Je5m9rNzNrBJ5aeapfWkocbQLZ2AEnBpl80i7yIy/3Yi2RcZ.y21
 [semets@pc-emets passwd-hash]$ 
 ```
 ### Запуск с отладкой, уровень 1
 ```
-[semets@pc-emets passwd-hash]$ export DEBUG=1; ./gen_passwd.sh 
+[semets@pc-emets passwd-hash]$ export DEBUG=1; ./passwd-hash.py 
 Salt lenght: 16
 Chipher: -6
 Random salt: 9k6FyocAgAY5Wg55
